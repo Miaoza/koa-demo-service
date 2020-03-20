@@ -2,7 +2,7 @@
  * @Author: Nianko 
  * @Date: 2020-03-19 16:52:29 
  * @Last Modified by: Nianko
- * @Last Modified time: 2020-03-20 15:57:32
+ * @Last Modified time: 2020-03-20 16:09:34
  */
 
 const base = require('../config/baseContext')
@@ -30,7 +30,7 @@ class UsersService extends base.Service {
     const { ctx } = this
     const userId = ctx.params.id || 0;
     console.log('userId:', userId)
-    const user = await ctx.model.Users.findByPk(3);
+    const user = await ctx.model.Users.findByPk(userId);
     if (user) {
       return formateUserField(user)
     }
