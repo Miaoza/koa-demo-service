@@ -2,7 +2,7 @@
  * @Author: Nianko 
  * @Date: 2020-03-19 14:59:12 
  * @Last Modified by: Nianko
- * @Last Modified time: 2020-03-23 10:42:03
+ * @Last Modified time: 2020-03-23 15:24:14
  */
 
 require("@babel/register");
@@ -16,6 +16,8 @@ const error = require('koa-json-error');
 const parameter = require("koa-parameter");
 const koajwt = require('koa-jwt');
 const koaBody = require('koa-body'); //解析上传文件的插件
+const koaStatic = require('koa-static');
+const path = require('path')
 
 app.use(koaBody({
   multipart: true,
@@ -23,6 +25,8 @@ app.use(koaBody({
     maxFileSize: 2000 * 1024 * 1024    // 设置上传文件大小最大限制，默认2M
   }
 }));
+// 配置静态资源加载中间件
+app.use(koaStatic(path.join(__dirname, 'public')))
 
 app.use(error());
 // app.use(error({
