@@ -2,7 +2,7 @@
  * @Author: Nianko 
  * @Date: 2020-03-19 14:59:12 
  * @Last Modified by: Nianko
- * @Last Modified time: 2020-03-20 15:25:18
+ * @Last Modified time: 2020-03-20 18:01:04
  */
 
 require("@babel/register");
@@ -33,6 +33,7 @@ app.use(koajwt({
 // })
 // 加载路由中间件
 app.use(router.routes()).use(router.allowedMethods())
+module.exports = app
 
 app.listen(3030)
 console.log('[demo] start-quick is starting at port 3030')
