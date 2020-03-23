@@ -2,7 +2,7 @@
  * @Author: Nianko 
  * @Date: 2020-03-19 14:59:12 
  * @Last Modified by: Nianko
- * @Last Modified time: 2020-03-20 18:01:04
+ * @Last Modified time: 2020-03-23 10:42:03
  */
 
 require("@babel/register");
@@ -15,6 +15,14 @@ const router = require('./app/routers');
 const error = require('koa-json-error');
 const parameter = require("koa-parameter");
 const koajwt = require('koa-jwt');
+const koaBody = require('koa-body'); //解析上传文件的插件
+
+app.use(koaBody({
+  multipart: true,
+  formidable: {
+    maxFileSize: 2000 * 1024 * 1024    // 设置上传文件大小最大限制，默认2M
+  }
+}));
 
 app.use(error());
 // app.use(error({
@@ -26,7 +34,7 @@ app.use(bodyParser());
 app.use(koajwt({
   secret: 'KOADEMOAPP'
 }).unless({
-  path: [/\/login/]
+  path: [/\/login/, /\/uploads/]
 }));
 // app.use(async (ctx) => {
 //   ctx.body = 'hello koa2'
